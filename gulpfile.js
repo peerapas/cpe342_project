@@ -6,6 +6,13 @@ const del = require("del");
 const gulp = require("gulp");
 const merge = require("merge-stream");
 
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('./classicmodels.sqlite',
+sqlite3.OPEN_READWRITE, (err) => {
+  if(err)return console.log(err.message);
+  console.log('Connect to the in-memory Sqlite datebase');
+});
+
 // BrowserSync
 function browserSync(done) {
   browsersync.init({
