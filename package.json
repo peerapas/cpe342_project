@@ -3,7 +3,8 @@
     "name": "startbootstrap-shop-homepage",
     "version": "4.2.1",
     "scripts": {
-        "start": "node_modules/.bin/gulp watch"
+        "start": "node_modules/.bin/gulp watch",
+        "app": "node app.js"
     },
     "description": "A shop homepage HTML template built with Bootstrap",
     "keywords": [
