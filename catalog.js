@@ -74,41 +74,76 @@ var sTimeOut = setTimeout(function () {
     });
 }, 250);
 
-function toAjax(id,cat){
-    $.ajax({
-        url: 'database/' + cat + ' ' + id,
-        type: 'GET',
-        dataType: 'json',
-        succes: (data) => {
-            let product = "";
-            data.forEach(e => {
-                product += `<div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#">${e.productName}</a>
-                  </h4>
-                  <h5>$${e.buyPrice}</h5>
-                  <p class="card-text">${e.productDescription}</p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                </div>
-              </div>
-            </div>`;
-                // console.log(product);
-            });
-            $('#product').html(product);
-        }
-    })
-}
+// function toAjax(id,cat){
+    // $.ajax({
+    //     url: 'database/' + cat + ' ' + id,
+    //     type: 'GET',
+    //     dataType: 'json',
+    //     succes: (data) => {
+    //         let product = "";
+    //         data.forEach(e => {
+    //             product += `<div class="col-lg-4 col-md-6 mb-4">
+    //           <div class="card h-100">
+    //             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+    //             <div class="card-body">
+    //               <h4 class="card-title">
+    //                 <a href="#">${e.productName}</a>
+    //               </h4>
+    //               <h5>$${e.buyPrice}</h5>
+    //               <p class="card-text">${e.productDescription}</p>
+    //             </div>
+    //             <div class="card-footer">
+    //               <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+    //             </div>
+    //           </div>
+    //         </div>`;
+    //             // console.log(product);
+    //         });
+    //         $('#product').html(product);
+    //     }
+//     })
+// }
 
-setTimeout(() => {
-    $('#vender0').click(() => {
-        console.log('00000');
-        toAjax('0','vender');
-    });
-}, 1000);
+// setTimeout(() => {
+//     $('#vender0').click(() => {
+//         console.log('00000');
+//         // toAjax('0','vender');
+//     });
+// }, 1000);
+
+setTimeout( () => {
+    $('.cat').click(() => {
+        const id = $(this).attr('id');
+        const _id = id.split(' ');
+        $.ajax({
+            url: 'database/' + _id[0] + '/' + _id[0] + ' ' + _id[1],
+            type: 'GET',
+            dataType: 'json',
+            succes: (data) => {
+                let product = "";
+                data.forEach(e => {
+                    product += `<div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <a href="#">${e.productName}</a>
+                      </h4>
+                      <h5>$${e.buyPrice}</h5>
+                      <p class="card-text">${e.productDescription}</p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                    </div>
+                  </div>
+                </div>`;
+                    // console.log(product);
+                });
+                $('#product').html(product);
+            }
+        })
+    })
+    
+}, 500);
 
     // });

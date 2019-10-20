@@ -11,6 +11,7 @@ app.get('/register', (req,res) => {
     res.sendFile(path.join(__dirname,'register.html'));
 });
 
+let vendorlist = "";
 let scalelist = "";
 
 app.get('/database/vendor', (req, res) => {
@@ -44,6 +45,21 @@ app.get('/database/scale', (req, res) => {
         // console.log(scalelist);
         res.send(scalelist);
     });
+});
+
+app.get('/database/scale/:scale_id', (req, res) => {
+    // console.log(vendorlist[0]);
+    let id = req.params.vendor_id.split(' ');
+    // console.log(vendorlist[id[1]]);
+    db.all('select productCode, productName, productDescription, buyPrice from products where productscale=$scale',
+        {
+            $scale: scalelist[id[1]]
+        },
+        (err, rows) => {
+            // console.log(rows);
+            res.send(rows);
+        }
+    )
 });
 
 const PORT = process.env.PORT || 3000;
