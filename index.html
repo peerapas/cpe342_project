@@ -53,11 +53,37 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">Product Line</h1>
+        <h1 class="my-4">Categorizes by ...</h1>
         <div class="list-group">
-          <!-- <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a> -->
+          <a href="#" class="list-group-item">Vendor</a>
+          <div class="dropdown-container" style="display: none; padding-left: 8px;">
+            <ul>
+              <li>
+                <a href="#">vendor1</a>
+              </li>
+              <li>
+                  <a href="#">vendor2</a>
+              </li>
+              <li>
+                  <a href="#">vendor3</a>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="list-group-item">Scale</a>
+          <div class="dropdown-container" style="display: none; padding-left: 8px;">
+              <ul>
+                <li>
+                  <a href="#">scale1</a>
+                </li>
+                <li>
+                    <a href="#">scale2</a>
+                </li>
+                <li>
+                    <a href="#">scale3</a>
+                </li>
+              </ul>
+            </div>
+          <!-- <a href="#" class="list-group-item">Category 3</a> -->
         </div>
 
       </div>
@@ -232,6 +258,19 @@
     })
 
   });
+  var dropdown = document.getElementsByClassName("list-group-item");
+  var i;
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+    } else {
+    dropdownContent.style.display = "block";
+    }
+    });
+  }
   </script>
 
 </body>
