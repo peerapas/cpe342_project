@@ -1,6 +1,23 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const express = require('express');
+const app = express();
+
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('./classicmodels.sqlite',
+sqlite3.OPEN_READWRITE, (err) => {
+  if(err)return console.log(err.message);
+  console.log('Connecting to the Sqlite datebase');
+});
+let sql = `select productLine as name from productlines`;
+let category = "";
+db.each(sql, (err, row) => {
+        if(err)console.log(err.message);
+        console.log(row.name);
+        // document.querySelector('#category').i nnerHTML += `<a href="#" class="list-group-item"> ${row.name} </a>`;
+    });
+console.log(category);
 
 const server = http.createServer((req, res) => {
     console.log(req.url);
@@ -46,5 +63,5 @@ const server = http.createServer((req, res) => {
     })
 });
 
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 5000;
 server.listen(port, () => console.log('Server is runing on port ', port));

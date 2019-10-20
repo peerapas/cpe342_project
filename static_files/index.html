@@ -54,10 +54,10 @@
       <div class="col-lg-3">
 
         <h1 class="my-4">Product Line</h1>
-        <div class="list-group">
-          <!-- <a href="#" class="list-group-item">Category 1</a>
+        <div class="list-group" id="category">
+          <a href="#" class="list-group-item">Category 1</a>
           <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a> -->
+          <a href="#" class="list-group-item">Category 3</a>
         </div>
 
       </div>
@@ -214,25 +214,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Adding database -->
-  <script>
-  $(document).ready(() => {
-    $.ajax({
-      url: 'database/category',
-      type: 'GET',
-      dataType: 'json',
-      success: (data) => {
-        console.log(data);
-        let category = "";
-        data.forEach(name => {
-          category+=`<a href="#" class="list-group-item" id="${name}">${name}</a>`;
-        });
-        // console.log(category);
-        $('.list-group').html(category);
-      }
-    })
-
-  });
-  </script>
+  <!-- <script src="dbConnect.js"></script> -->
 
 </body>
 

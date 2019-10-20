@@ -6,13 +6,6 @@ const del = require("del");
 const gulp = require("gulp");
 const merge = require("merge-stream");
 
-const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('./classicmodels.sqlite',
-sqlite3.OPEN_READWRITE, (err) => {
-  if(err)return console.log(err.message);
-  console.log('Connect to the in-memory Sqlite datebase');
-});
-
 // BrowserSync
 function browserSync(done) {
   browsersync.init({
@@ -66,3 +59,17 @@ exports.vendor = vendor;
 exports.build = build;
 exports.watch = watch;
 exports.default = build;
+
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('./classicmodels.sqlite',
+sqlite3.OPEN_READWRITE, (err) => {
+  if(err)return console.log(err.message);
+  console.log('Connect to the in-memory Sqlite datebase');
+});
+let sql = `select productLine as name from productlines`;
+let category = "";
+db.each(sql, (err, row) => {
+        if(err)console.log(err.message);
+        console.log(`<a href="#" class="list-group-item"> ${row.name} </a>`);
+        document.querySelector('#category').innerHTML += `<a href="#" class="list-group-item"> ${row.name} </a>`;
+    });
