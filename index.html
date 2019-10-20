@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Login</a>
+            <a class="nav-link" href="/" id="login">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="register">Register</a>
@@ -46,44 +46,24 @@
     </div>
   </nav>
 
+
   <!-- Page Content -->
   <div class="container">
 
-    <div class="row">
+    <div class="row" >
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">Categorizes by ...</h1>
+        <h1 class="my-4" id="vendor">Product Categorized by</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item">Vendor</a>
-          <div class="dropdown-container" style="display: none; padding-left: 8px;">
-            <ul>
-              <li>
-                <a href="#">vendor1</a>
-              </li>
-              <li>
-                  <a href="#">vendor2</a>
-              </li>
-              <li>
-                  <a href="#">vendor3</a>
-              </li>
-            </ul>
-          </div>
-          <a href="#" class="list-group-item">Scale</a>
-          <div class="dropdown-container" style="display: none; padding-left: 8px;">
-              <ul>
-                <li>
-                  <a href="#">scale1</a>
-                </li>
-                <li>
-                    <a href="#">scale2</a>
-                </li>
-                <li>
-                    <a href="#">scale3</a>
-                </li>
-              </ul>
-            </div>
-          <!-- <a href="#" class="list-group-item">Category 3</a> -->
+          <p class="list-group-item">Vendor</p>
+          <ul id="vendorList">
+          </ul>
+          <p class="list-group-item">Scale</p>
+          <ul id="scaleList"></ul>
+          <!-- <a href="#" class="list-group-item">Category 1</a>
+          <a href="#" class="list-group-item">Category 2</a>
+          <a href="#" class="list-group-item">Category 3</a> -->
         </div>
 
       </div>
@@ -118,89 +98,9 @@
           </a>
         </div>
 
-        <div class="row">
+        <div class="row" id="product">
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item One</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Two</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Three</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Four</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Five</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
+          <!-- <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
@@ -214,7 +114,7 @@
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
         <!-- /.row -->
@@ -240,38 +140,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Adding database -->
-  <script>
-  $(document).ready(() => {
-    $.ajax({
-      url: 'database/category',
-      type: 'GET',
-      dataType: 'json',
-      success: (data) => {
-        console.log(data);
-        let category = "";
-        data.forEach(name => {
-          category+=`<a href="#" class="list-group-item" id="${name}">${name}</a>`;
-        });
-        // console.log(category);
-        $('.list-group').html(category);
-      }
-    })
-
-  });
-  var dropdown = document.getElementsByClassName("list-group-item");
-  var i;
-  for (i = 0; i < dropdown.length; i++) {
-    dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-    dropdownContent.style.display = "none";
-    } else {
-    dropdownContent.style.display = "block";
-    }
-    });
-  }
-  </script>
+  <script src="catalog.js"></script>
 
 </body>
 
