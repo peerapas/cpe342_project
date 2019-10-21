@@ -12,7 +12,6 @@ app.get('/register', (req,res) => {
 });
 
 let vendorlist = "";
-let scalelist = "";
 
 app.get('/database/vendor', (req, res) => {
     db.all('SELECT productvendor as vendor FROM products group by productvendor', (err, rows) => {
@@ -38,6 +37,8 @@ app.get('/database/vendor/:vendor_id', (req, res) => {
     )
 });
 
+let scalelist = "";
+
 app.get('/database/scale', (req, res) => {
     db.all('SELECT productScale as scale FROM products group by productScale', (err, rows) => {
         // console.log(rows);
@@ -49,7 +50,7 @@ app.get('/database/scale', (req, res) => {
 
 app.get('/database/scale/:scale_id', (req, res) => {
     // console.log(vendorlist[0]);
-    let id = req.params.vendor_id.split(' ');
+    let id = req.params.scale_id.split(' ');
     // console.log(vendorlist[id[1]]);
     db.all('select productCode, productName, productDescription, buyPrice from products where productscale=$scale',
         {

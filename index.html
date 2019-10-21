@@ -35,7 +35,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/" id="login">Login</a>
+            <!-- <a class="nav-link" href="/" id="login">Login</a> -->
+            <a href="" class="nav-link" id="nav-login" onclick="document.getElementById('id01').style.display='block'">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="register">Register</a>
@@ -135,6 +136,37 @@
     </div>
     <!-- /.container -->
   </footer>
+
+  <!-- Login Block -->
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'"
+   title="Close Modal">&times;</span>
+  
+    <!-- Modal Content -->
+    <form action="/action_page.php">
+      <div>
+        <img src="img_avatar2.png" alt="Avatar">
+      </div>
+  
+      <div>
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+  
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+  
+        <button type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+  
+      <div style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+        <span>Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
