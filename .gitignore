@@ -1,5 +1,6 @@
 node_modules
 notUse_htmlFile
+<<<<<<< HEAD
 '.npm-global'/node-gyp
 '.npm-global'/node-gyp.cmd
 '.npm-global'/node-gyp.ps1
@@ -12,3 +13,7 @@ notUse_htmlFile
 '.npm-global'/npx
 '.npm-global'/npx.cmd
 '.npm-global'/npx.ps1
+=======
+
+classicmodels.sqlite
+>>>>>>> b5a27c52488e2d976923a48e0c0b4597775e747a
