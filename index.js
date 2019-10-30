@@ -16,6 +16,15 @@ app.get('/register', (req, res) => {
     res.render('register');
 });
 
+app.get('/stock_in', (req, res) => {
+    res.render('stock_in');
+});
+
+app.get('/edit_product', (req, res) => {
+    res.render('edit_product');
+})
+
+
 // Products routes
 app.use('/products', require('./routes/products'));
 // Employees routes

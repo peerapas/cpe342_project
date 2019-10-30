@@ -1,2 +1,14 @@
 node_modules
 notUse_htmlFile
+'.npm-global'/node-gyp
+'.npm-global'/node-gyp.cmd
+'.npm-global'/node-gyp.ps1
+'.npm-global'/npm
+'.npm-global'/npm-windows-upgrade
+'.npm-global'/npm-windows-upgrade.cmd
+'.npm-global'/npm-windows-upgrade.ps1
+'.npm-global'/npm.cmd
+'.npm-global'/npm.ps1
+'.npm-global'/npx
+'.npm-global'/npx.cmd
+'.npm-global'/npx.ps1
