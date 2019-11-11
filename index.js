@@ -17,13 +17,16 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/stock_in', (req, res) => {
-    res.render('stock_in');
+    res.render('stock_in', {layout: 'employee_nav'});
 });
 
 app.get('/edit_product', (req, res) => {
     res.render('edit_product');
 })
 
+app.get('/employee', (req, res) => {
+    res.render('employee_index', {layout: 'employee_nav'});
+})
 
 // Products routes
 app.use('/products', require('./routes/products'));
