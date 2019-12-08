@@ -40,4 +40,11 @@ router.get('/scale/:find', (req, res) => {
     })
 });
 
+router.get('/edit/:find', (req, res) => {
+    Products.findAll({ where: {ProductCode: req.params.find}})
+    .then(product => {
+        res.send(product)
+    })
+})
+
 module.exports = router;

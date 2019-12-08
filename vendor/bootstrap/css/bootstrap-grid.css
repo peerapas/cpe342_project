@@ -57,6 +57,7 @@ html {
 
 .row {
   display: -ms-flexbox;
+  margin-top: 10px;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;

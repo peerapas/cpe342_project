@@ -17,17 +17,24 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/stock_in', (req, res) => {
-    res.render('stock_in');
+    res.render('stock_in', {layout: 'employee_nav'});
 });
 
-app.get('/edit_product', (req, res) => {
-    res.render('edit_product');
+app.get('/add_product', (req, res) => {
+    res.render('add_product', {layout: 'employee_nav'});
 })
 
 app.get('/purchase',(req,res) => {
     res.render('purchase');
 })
 
+app.get('/employee_index', (req,res) => {
+    res.render('employee_index', {layout: 'employee_nav'});
+})
+
+app.get('/createDiscount', (req,res) => {
+    res.render('createDiscount', {layout: 'employee_nav'})
+})
 
 // Products routes
 app.use('/products', require('./routes/products'));
