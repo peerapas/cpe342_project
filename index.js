@@ -11,6 +11,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var sess;
+
+app.get('/session', (req, res) => {
+    sess = req.session;
+    console.log(req.username);
+    res.send(sess.username);
+});
+
 app.post('/session', (req, res) => {
     sess = req.session;
     sess.username = req.body.username;
