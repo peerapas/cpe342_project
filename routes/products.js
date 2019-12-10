@@ -48,8 +48,8 @@ router.get('/edit/:find', (req, res) => {
 })
 
 router.post('/edit', (req, res) => {
-    console.log(req.body.Name)
     Products.update({
+        productCode: req.body.Code,
         productName: req.body.Name,
         productLine: req.body.Line,
         productSclae: req.body.Scale,
@@ -61,6 +61,38 @@ router.post('/edit', (req, res) => {
     },
     {
         where: {productCode: req.body.Code},
+        silent: true
+    }).then(e => {
+        if(e.productName == req.body.Name){
+            res.end('done');
+        }
+    })
+})
+
+router.post('/delete', (req, res) => {
+    console.log(req.body.targetCode)
+    Products.destroy({
+        where:{
+            productCode: req.body.targetCode
+        }
+    }).then(e => {
+        console.log("ID:" + req.body.targetCode + " is deleted")
+    })
+})
+
+router.post('/create', (req,res) => {
+    Products.create({
+        productCode: req.body.Code,
+        productName: req.body.Name,
+        productLine: req.body.Line,
+        productSclae: req.body.Scale,
+        productVendor: req.body.Vendor,
+        productDescription: req.body.Desc,
+        quantityInStock: req.body.Quantity,
+        buyPrice: req.body.Price,
+        MSRP: req.body.MSRP,
+    },
+    {
         silent: true
     }).then(e => {
         if(e.productName == req.body.Name){

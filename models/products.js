@@ -29,10 +29,13 @@ const products = db.define('products', {
     MSRP: {
         type: Sequelize.STRING
     },
+    
+},{
+    timestamps: false
 });
-
+timestamps: false
 products.removeAttribute('id');
-products.removeAttribute('createdAt');
-products.removeAttribute('updatedAt');
+// products.removeAttribute('createdAt');
+// products.removeAttribute('updatedAt');
 
 module.exports = products;

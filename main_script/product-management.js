@@ -98,7 +98,7 @@ function getProduct_click(id, e) {
                             <button type="submit" id="${e.productCode}" onClick="save_click(this.id, event)" class="btn btn-default" style="background-color:gray;color:white">Save</button>
                         </div>
                         <div class="col-5">
-                            <button type="submit" class="btn btn-default" style="background-color:gray;color:white">Delete</button>
+                            <button type="submit" id="${e.productCode}" onClick="delete_click(this.id, event)" class="btn btn-default" style="background-color:gray;color:white">Delete</button>
                         </div>
                       </div>
                 
@@ -126,12 +126,6 @@ function getProduct_click(id, e) {
 
 function save_click(id, e){
   e.preventDefault();
-  // $.ajax({
-  //   url: 'products/edit/' + id,
-  //   type: 'GET',
-  //   dataType: 'json',
-  //   success: (data) => {
-      // data.forEach(e => {
         const target = {
           targetCode: id,
           newName: document.getElementById("pname"+id).value.toString(),
@@ -147,10 +141,10 @@ function save_click(id, e){
         $.post('products/edit',/*{Name:target.newName}*/{Code: target.targetCode, Name: target.newName, Line: target.newLine, Vendor: target.newVendor, newScale: target.newScale,
                                 Desc: target.newDesc, Quantity: target.newQuantity, Price: target.newPrice, MSRP: target.newMSRP},
                                 d => {if(d==='done'){console.log('updated'+ id)} })
-    // });
-  //   }
+}
 
-  // })
-  
+function delete_click(id, e){
+  e.preventDefault()
+  $.post('products/delete', {targetCode: id})
 }
 
