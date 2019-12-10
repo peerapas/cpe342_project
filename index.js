@@ -1,15 +1,41 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
+
+app.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+var sess;
+app.post('/session', (req, res) => {
+    sess = req.session;
+    sess.username = req.body.username;
+    res.end('done');
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) return console.log(err);
+        res.redirect('/');
+    })
+});
+
+app.get('/', (req, res) => {
+    sess = req.session;
+    if (sess.username) {
+        return res.redirect('/employee_index');
+    }
+    res.render('index');
+});
 
 app.use(express.static(__dirname));
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-
-app.get('/', (req, res) => res.render('index'));
 
 app.get('/register', (req, res) => {
     // res.sendFile(path.join(__dirname,"register.html"));
@@ -17,23 +43,23 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/stock_in', (req, res) => {
-    res.render('stock_in', {layout: 'employee_nav'});
+    res.render('stock_in', { layout: 'employee_nav' });
 });
 
 app.get('/add_product', (req, res) => {
-    res.render('add_product', {layout: 'employee_nav'});
+    res.render('add_product', { layout: 'employee_nav' });
 })
 
-app.get('/purchase',(req,res) => {
+app.get('/purchase', (req, res) => {
     res.render('purchase');
 })
 
-app.get('/employee_index', (req,res) => {
-    res.render('employee_index', {layout: 'employee_nav'});
+app.get('/employee_index', (req, res) => {
+    res.render('employee_index', { layout: 'employee_nav' });
 })
 
-app.get('/createDiscount', (req,res) => {
-    res.render('createDiscount', {layout: 'employee_nav'})
+app.get('/createDiscount', (req, res) => {
+    res.render('createDiscount', { layout: 'employee_nav' })
 })
 
 // Products routes

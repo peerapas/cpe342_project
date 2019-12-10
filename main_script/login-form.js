@@ -34,6 +34,13 @@ $("#login-button").click((e) => {
     e.preventDefault();
     // const user = {username : document.getElementById("uname_field").value, password: document.getElementById("psw_field").value}
     const user = { username: $("#uname_field").val(), password: $("#psw_field").val() }
-        // console.log(user.username);
-
+        // console.log(user);
+    $.post('/employees/login', { username: user.username, password: user.password }, d => {
+        if (d == 'done') {
+            $.post('/session', { username: user.username });
+            window.location.href = "/employee_index";
+        } else document.getElementsByClassName("login_container").innerHTML += `<label style="color: red, display: none">
+        username or password incorrect
+      </label>;`
+    });
 });

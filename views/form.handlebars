@@ -1,0 +1,10 @@
+<form action="/products/vendor" method="get">
+
+    <input type="submit" value="aaa">
+
+    {{#each product}}
+        <h1>{{productVendor}}</h1>
+    {{else}}
+        <h1>Not found</h1>
+    {{/each}}
+</form>
