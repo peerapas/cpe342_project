@@ -11,6 +11,12 @@ router.get('/', (req, res) => {
         .catch(err => console.log(err))
 });
 
+router.get('/find/:id', (req, res) => {
+    Employees.findOne({
+        where: { employeeNumber: req.params.id }
+    }).then(e => res.send(e));
+});
+
 router.get('/login/createPassword/:password', (req, res) => {
     Employees.update({
         Password: cryptoJS.AES.encrypt(req.params.password, "cpe342").toString()
@@ -25,12 +31,16 @@ router.post('/login', (req, res) => {
     Employees.findOne({
         where: { employeeNumber: req.body.username }
     }).then(e => {
+        if (!e) {
+            res.end('fail');
+            return;
+        }
         const decrypted = cryptoJS.AES.decrypt(e.Password, "cpe342").toString(cryptoJS.enc.Utf8);
         if (decrypted === req.body.password) res.end('done');
         else {
             res.end('fail');
         }
-    })
+    }).catch();
 })
 
 module.exports = router;

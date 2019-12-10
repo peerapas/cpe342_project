@@ -20,7 +20,7 @@ $("#id01").html(`<form class="login_modal-content animate">
 
 <div class="login_container" style="background-color:#f1f1f1">
   <button type="button" onclick="document.getElementById('id01').style.display='none'" class="login_cancelbtn">Cancel</button>
-  <span class="login_psw">Don't have account yet? <a href="/register">Register now</a></span>
+  <span class="login_psw"></span>
 </div>
 </form>`);
 
@@ -39,8 +39,6 @@ $("#login-button").click((e) => {
         if (d == 'done') {
             $.post('/session', { username: user.username });
             window.location.href = "/employee_index";
-        } else document.getElementsByClassName("login_container").innerHTML += `<label style="color: red, display: none">
-        username or password incorrect
-      </label>;`
+        } else $('.login_psw').html(`<span style="color: red">Username or Password incorrected!</span>`);
     });
 });

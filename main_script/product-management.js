@@ -1,6 +1,5 @@
-
 const vendorList = new Array;
-const scaleList = new Array ;
+const scaleList = new Array;
 $.ajax({
     url: 'products/vendor',
     type: 'GET',
@@ -32,7 +31,7 @@ $.ajax({
         });
         $('#scaleList').html(scale);
     }
-  });
+});
 
 
 function getProduct_click(id, e) {
@@ -81,7 +80,7 @@ function getProduct_click(id, e) {
                       <div class="form-group row">
                         <div class="col-5">
                           <label for="quantity">Quantity in Stock:</label>
-                          <input type="text" class="form-control" id="pquan${e.productCode}" value="${e.quantityInStock}">
+                          <input disabled type="text" class="form-control" id="pquan${e.productCode}" value="${e.quantityInStock}">
                         </div>
                         <div class="col-5">
                           <label for="price">Price:</label>
@@ -114,43 +113,51 @@ function getProduct_click(id, e) {
                 </div>
                 </div>`;
                 // console.log(product);
-                
+
             });
             $('#product').html(product);
             // console.log(data);
-         }
+        }
     })
 }
 
 
 
-function save_click(id, e){
-  e.preventDefault();
-  // $.ajax({
-  //   url: 'products/edit/' + id,
-  //   type: 'GET',
-  //   dataType: 'json',
-  //   success: (data) => {
-      // data.forEach(e => {
-        const target = {
-          targetCode: id,
-          newName: document.getElementById("pname"+id).value.toString(),
-          newLine: document.getElementById("pline"+id).value.toString(),
-          newScale: document.getElementById("pscale"+id).value.toString(),
-          newVendor: document.getElementById("pvendor"+id).value.toString(),
-          newDesc: document.getElementById("pdes"+id).value.toString(),
-          newQuantity: document.getElementById("pquan"+id).value.toString(),
-          newPrice: document.getElementById("pprice"+id).value.toString(),
-          newMSRP: document.getElementById("msrp"+id).value.toString()
-        }
-        console.log(target)
-        $.post('products/edit',/*{Name:target.newName}*/{Code: target.targetCode, Name: target.newName, Line: target.newLine, Vendor: target.newVendor, newScale: target.newScale,
-                                Desc: target.newDesc, Quantity: target.newQuantity, Price: target.newPrice, MSRP: target.newMSRP},
-                                d => {if(d==='done'){console.log('updated'+ id)} })
-    // });
-  //   }
+function save_click(id, e) {
+    e.preventDefault();
+    // $.ajax({
+    //   url: 'products/edit/' + id,
+    //   type: 'GET',
+    //   dataType: 'json',
+    //   success: (data) => {
+    // data.forEach(e => {
+    const target = {
+        targetCode: id,
+        newName: document.getElementById("pname" + id).value.toString(),
+        newLine: document.getElementById("pline" + id).value.toString(),
+        newScale: document.getElementById("pscale" + id).value.toString(),
+        newVendor: document.getElementById("pvendor" + id).value.toString(),
+        newDesc: document.getElementById("pdes" + id).value.toString(),
+        newQuantity: document.getElementById("pquan" + id).value.toString(),
+        newPrice: document.getElementById("pprice" + id).value.toString(),
+        newMSRP: document.getElementById("msrp" + id).value.toString()
+    }
+    console.log(target)
+    $.post('products/edit', /*{Name:target.newName}*/ {
+                Code: target.targetCode,
+                Name: target.newName,
+                Line: target.newLine,
+                Vendor: target.newVendor,
+                newScale: target.newScale,
+                Desc: target.newDesc,
+                Quantity: target.newQuantity,
+                Price: target.newPrice,
+                MSRP: target.newMSRP
+            },
+            d => { if (d === 'done') { console.log('updated' + id) } })
+        // });
+        //   }
 
-  // })
-  
+    // })
+
 }
-
