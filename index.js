@@ -42,8 +42,8 @@ app.get('/register', (req, res) => {
     res.render('register');
 });
 
-app.get('/stock_in', (req, res) => {
-    res.render('stock_in', { layout: 'employee_nav' });
+app.get('/product_management', (req, res) => {
+    res.render('product_management', { layout: 'employee_nav' });
 });
 
 app.get('/add_product', (req, res) => {
