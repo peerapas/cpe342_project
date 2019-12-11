@@ -14,7 +14,6 @@ var sess;
 
 app.get('/session', (req, res) => {
     sess = req.session;
-    console.log(req.username);
     res.send(sess.username);
 });
 

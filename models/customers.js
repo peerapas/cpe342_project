@@ -4,7 +4,10 @@ const db = require('../config/database');
 const customers = db.define('customers', {
     customerNumber: {
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
+        unique: true,
+        allowNull: false
     },
     customerName: {
         type: Sequelize.STRING
