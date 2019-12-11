@@ -14,7 +14,6 @@ var sess;
 
 app.get('/session', (req, res) => {
     sess = req.session;
-    console.log(req.username);
     res.send(sess.username);
 });
 
@@ -67,6 +66,10 @@ app.get('/employee_index', (req, res) => {
 
 app.get('/createDiscount', (req, res) => {
     res.render('createDiscount', { layout: 'employee_nav' })
+})
+
+app.get('/customer_manage', (req, res) => {
+    res.render('customer', { layout: 'employee_nav' });
 })
 
 // Products routes

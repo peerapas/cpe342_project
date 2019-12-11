@@ -37,7 +37,7 @@
         let data = `<tr>
                         <td colspan="6">Customer List</td>
                         <td>
-                     <button class="btn btn-success" sylte="width:50%">
+                     <button class="btn btn-success" sylte="width:50%" onClick="insert(event); document.getElementById('id01').style.display='block'; return false;">
                         +
                       </button>
                         </td>
@@ -88,6 +88,7 @@
                         
                         <th>
                             <div><button id="${e.customerNumber}" class="btn btn-success" onclick="edit(this.id); document.getElementById('id01').style.display='block'; return false;">edit</button></div>
+                            <div><button id="${e.customerNumber}" class="login_cancelbtn" onclick="remove(this.id); return false;">delete</button></div>
                         </th>
                     </tr>`
         });
@@ -151,27 +152,111 @@
                 $('.login-button').click((e) => {
                     e.preventDefault();
                     const ipt = {
-                    customerNumber: data.customerNumber,
-                    customerName: document.getElementById('edit_name').value,
-                    contactLastName: document.getElementById('edit_lname').value,
-                    contactFirstName: document.getElementById('edit_fname').value,
-                    phone: document.getElementById('edit_phone').value,
-                    addressLine1: document.getElementById('edit_add1').value,
-                    addressLine2: document.getElementById('edit_add2').value,
-                    city: document.getElementById('edit_city').value,
-                    state: document.getElementById('edit_state').value,
-                    postalCode: document.getElementById('edit_postcode').value,
-                    country: document.getElementById('edit_country').value,
-                    salesRepEmployeeNumber: document.getElementById('edit_salesRep').value,
-                    creditLimit: document.getElementById('edit_credit').value,
-                    points: document.getElementById('edit_points').value
-                }
+                        customerNumber: data.customerNumber,
+                        customerName: document.getElementById('edit_name').value,
+                        contactLastName: document.getElementById('edit_lname').value,
+                        contactFirstName: document.getElementById('edit_fname').value,
+                        phone: document.getElementById('edit_phone').value,
+                        addressLine1: document.getElementById('edit_add1').value,
+                        addressLine2: document.getElementById('edit_add2').value,
+                        city: document.getElementById('edit_city').value,
+                        state: document.getElementById('edit_state').value,
+                        postalCode: document.getElementById('edit_postcode').value,
+                        country: document.getElementById('edit_country').value,
+                        salesRepEmployeeNumber: document.getElementById('edit_salesRep').value,
+                        creditLimit: document.getElementById('edit_credit').value,
+                        points: document.getElementById('edit_points').value
+                    }
                     $.post('/customers/update', { d: ipt }, res => {
 
                     });
                 }
                 )
             }
+        })
+    }
+
+    function remove(id){
+        $.post('/customers/delete', {id: id}, res => {
+
+        })
+    }
+
+    function insert(e) {
+        e.preventDefault();
+        $("#id01").html(`<form class="login_modal-content animate">
+    <div class="login_imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="login_close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="login_container">
+        <label for="uname"><b>Customer Name</b></label>
+        <input type="text" name="uname" id="edit_name" >
+
+        <label for="uname"><b>Contact FirstName</b></label>
+        <input type="text" name="uname" id="edit_fname" >
+
+        <label for="uname"><b>Contact LastName</b></label>
+        <input type="text" name="uname" id="edit_lname" >
+
+        <label for="uname"><b>Phone</b></label>
+        <input type="text" name="uname" id="edit_phone" >
+
+        <label for="uname"><b>Address Line 1</b></label>
+        <input type="text" name="uname" id="edit_add1" >
+
+        <label for="uname"><b>Address Line 2</b></label>
+        <input type="text" name="uname" id="edit_add2" >
+
+        <label for="uname"><b>City</b></label>
+        <input type="text" name="uname" id="edit_city" >
+
+        <label for="uname"><b>State</b></label>
+        <input type="text" name="uname" id="edit_state" >
+
+        <label for="uname"><b>Postal Code</b></label>
+        <input type="text" name="uname" id="edit_postcode" >
+
+        <label for="uname"><b>Country</b></label>
+        <input type="text" name="uname" id="edit_country" >
+
+        <label for="uname"><b>Sales Represent</b></label>
+        <input type="text" name="uname" id="edit_salesRep" >
+
+        <label for="uname"><b>Credit Limit</b></label>
+        <input type="text" name="uname" id="edit_credit" >
+
+        <label for="uname"><b>Points</b></label>
+        <input type="text" name="uname" id="edit_points" >
+
+    </div>
+
+    <div class="login_container" style="background-color:#f1f1f1">
+        <button class='login-button'>Apply</button>
+    </div>
+</form>`);
+
+        $('.login-button').click((e) => {
+            e.preventDefault();
+            const ipt = {
+                customerNumber: document.getElementById('edit_name').value,
+                customerName: document.getElementById('edit_name').value,
+                contactLastName: document.getElementById('edit_lname').value,
+                contactFirstName: document.getElementById('edit_fname').value,
+                phone: document.getElementById('edit_phone').value,
+                addressLine1: document.getElementById('edit_add1').value,
+                addressLine2: document.getElementById('edit_add2').value,
+                city: document.getElementById('edit_city').value,
+                state: document.getElementById('edit_state').value,
+                postalCode: document.getElementById('edit_postcode').value,
+                country: document.getElementById('edit_country').value,
+                salesRepEmployeeNumber: document.getElementById('edit_salesRep').value,
+                creditLimit: document.getElementById('edit_credit').value,
+                points: document.getElementById('edit_points').value
+            }
+            $.post('/customers/create', { d: ipt }, res => {
+                
+            });
         })
     }
 
