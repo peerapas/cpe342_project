@@ -1,0 +1,183 @@
+<div id="id01" class="login_modal"></div>
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <h1 class="my-4"></h1>
+
+        <div class="col-lg-9">
+
+            <form action="#">
+                <table id="data" class="table table-striped table-bordered" style="margin-top:20px">
+
+                </table>
+            </form>
+            </br>
+            </br>
+            </br>
+            </br>
+
+
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script>
+    let customers;
+    $.get('/customers', d => {
+        customers = d;
+        let data = `<tr>
+                        <td colspan="6">Customer List</td>
+                        <td>
+                     <button class="btn btn-success" sylte="width:50%">
+                        +
+                      </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div>Customer Number</div>
+                        </th>
+                        <th>
+                            <div>Name</div>
+                        </th>
+                        <th>
+                            <div>Phone</div>
+                        </th>
+                        <th>
+                            <div>Address</div>
+                        </th>
+                        <th>
+                            <div>Credit</div>
+                        </th>
+                        <th>
+                            <div>Point</div>
+                        </th>
+                        <th>
+                            <div></div>
+                        </th>
+                    </tr>`;
+        d.forEach(e => {
+            data += `<tr>
+                        <th>
+                            <div id="customerNumber">${e.customerNumber}</div>
+                        </th>
+                        <th>
+                            <div id="customerName">${e.customerName}</div>
+                        </th>
+                        <th>
+                            <div id="phone">${e.phone}</div>
+                        </th>
+                        <th>
+                            <div>${e.addressLine1} ${e.addressLine2} ${e.city} ${e.state} ${e.postalCode} ${e.country}</div>
+                        </th>
+                        <th>
+                            <div id="credit">${e.creditLimit}</div>
+                        </th>
+                        <th>
+                            <div id="point">${e.points}</div>
+                        </th>
+                        
+                        <th>
+                            <div><button id="${e.customerNumber}" class="btn btn-success" onclick="edit(this.id); document.getElementById('id01').style.display='block'; return false;">edit</button></div>
+                        </th>
+                    </tr>`
+        });
+        $('#data').html(data);
+    });
+
+    function edit(id) {
+        $.get('/customers/' + id, data => {
+            if (data) {
+                $("#id01").html(`<form class="login_modal-content animate">
+    <div class="login_imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="login_close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="login_container">
+        <label for="uname"><b>Customer Name</b></label>
+        <input type="text" name="uname" id="edit_name" value="${data.customerName}">
+
+        <label for="uname"><b>Contact FirstName</b></label>
+        <input type="text" name="uname" id="edit_fname" value="${data.contactFirstName}">
+
+        <label for="uname"><b>Contact LastName</b></label>
+        <input type="text" name="uname" id="edit_lname" value="${data.contactLastName}">
+
+        <label for="uname"><b>Phone</b></label>
+        <input type="text" name="uname" id="edit_phone" value="${data.phone}">
+
+        <label for="uname"><b>Address Line 1</b></label>
+        <input type="text" name="uname" id="edit_add1" value="${data.addressLine1}">
+
+        <label for="uname"><b>Address Line 2</b></label>
+        <input type="text" name="uname" id="edit_add2" value="${data.addressLine2}">
+
+        <label for="uname"><b>City</b></label>
+        <input type="text" name="uname" id="edit_city" value="${data.city}">
+
+        <label for="uname"><b>State</b></label>
+        <input type="text" name="uname" id="edit_state" value="${data.state}">
+
+        <label for="uname"><b>Postal Code</b></label>
+        <input type="text" name="uname" id="edit_postcode" value="${data.postalCode}">
+
+        <label for="uname"><b>Country</b></label>
+        <input type="text" name="uname" id="edit_country" value="${data.country}">
+
+        <label for="uname"><b>Sales Represent</b></label>
+        <input type="text" name="uname" id="edit_salesRep" value="${data.salesRepEmployeeNumber}">
+
+        <label for="uname"><b>Credit Limit</b></label>
+        <input type="text" name="uname" id="edit_credit" value="${data.creditLimit}">
+
+        <label for="uname"><b>Points</b></label>
+        <input type="text" name="uname" id="edit_points" value="${data.points}">
+
+    </div>
+
+    <div class="login_container" style="background-color:#f1f1f1">
+        <button class='login-button'>Apply</button>
+    </div>
+</form>`);
+                $('.login-button').click((e) => {
+                    e.preventDefault();
+                    const ipt = {
+                    customerNumber: data.customerNumber,
+                    customerName: document.getElementById('edit_name').value,
+                    contactLastName: document.getElementById('edit_lname').value,
+                    contactFirstName: document.getElementById('edit_fname').value,
+                    phone: document.getElementById('edit_phone').value,
+                    addressLine1: document.getElementById('edit_add1').value,
+                    addressLine2: document.getElementById('edit_add2').value,
+                    city: document.getElementById('edit_city').value,
+                    state: document.getElementById('edit_state').value,
+                    postalCode: document.getElementById('edit_postcode').value,
+                    country: document.getElementById('edit_country').value,
+                    salesRepEmployeeNumber: document.getElementById('edit_salesRep').value,
+                    creditLimit: document.getElementById('edit_credit').value,
+                    points: document.getElementById('edit_points').value
+                }
+                    $.post('/customers/update', { d: ipt }, res => {
+
+                    });
+                }
+                )
+            }
+        })
+    }
+
+    var modal = document.getElementById("id01");
+
+    window.onclick = (e) => {
+        if (e.target == modal) modal.style.display = 'none';
+    }
+</script>
