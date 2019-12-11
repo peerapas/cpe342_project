@@ -3,15 +3,16 @@ const db = require('../config/database');
 
 const customers = db.define('customers', {
     customerNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        primaryKey: true
     },
     customerName: {
         type: Sequelize.STRING
     },
-    customerLastName: {
+    contactLastName: {
         type: Sequelize.STRING
     },
-    customerFirstName: {
+    contactFirstName: {
         type: Sequelize.STRING
     },
     phone: {
@@ -36,17 +37,18 @@ const customers = db.define('customers', {
         type: Sequelize.STRING
     },
     salesRepEmployeeNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
     },
     creditLimit: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
+    },
+    points: {
+        type: Sequelize.INTEGER
     }
-},{
+}, {
     timestamps: false
 });
 
 customers.removeAttribute('id');
-customers.removeAttribute('createdAt');
-customers.removeAttribute('updatedAt');
 
 module.exports = customers;

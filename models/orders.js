@@ -1,18 +1,19 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const orders = db.define('orders',{
+const orders = db.define('orders', {
     orderNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        primaryKey: true
     },
     orderDate: {
-        type: Sequelize.STRING
+        type: Sequelize.DATEONLY
     },
     requiredDate: {
-        type: Sequelize.STRING
+        type: Sequelize.DATEONLY
     },
     shippedDate: {
-        type: Sequelize.STRING
+        type: Sequelize.DATEONLY
     },
     status: {
         type: Sequelize.STRING
@@ -21,14 +22,12 @@ const orders = db.define('orders',{
         type: Sequelize.STRING
     },
     customerNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
     }
-},{
+}, {
     timestamps: false
 });
 
 orders.removeAttribute('id');
-orders.removeAttribute('createdAt');
-orders.removeAttribute('updatedAt');
 
 module.exports = orders;

@@ -46,7 +46,7 @@ app.set('view engine', 'handlebars');
 
 app.get('/register', (req, res) => {
     // res.sendFile(path.join(__dirname,"register.html"));
-    res.render('register');
+    res.render('register', { layout: 'employee_nav' });
 });
 
 app.get('/product_management', (req, res) => {
@@ -73,6 +73,8 @@ app.get('/createDiscount', (req, res) => {
 app.use('/products', require('./routes/products'));
 // Employees routes
 app.use('/employees', require('./routes/employees'));
+// Customers routes
+app.use('/customers', require('./routes/customers'));
 
 const PORT = process.env.PORT || 3000;
 

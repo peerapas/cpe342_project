@@ -1,40 +1,38 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const offices = db.define('offices',{
-    officeCode:{
+const offices = db.define('offices', {
+    officeCode: {
         type: Sequelize.STRING
     },
-    city:{
+    city: {
         type: Sequelize.STRING
     },
-    phone:{
+    phone: {
         type: Sequelize.STRING
     },
-    addressLine1:{
+    addressLine1: {
         type: Sequelize.STRING
     },
-    addressLine2:{
+    addressLine2: {
         type: Sequelize.STRING
     },
-    state:{
+    state: {
         type: Sequelize.STRING
     },
-    country:{
+    country: {
         type: Sequelize.STRING
     },
-    postalCode:{
+    postalCode: {
         type: Sequelize.STRING
     },
-    territory:{
+    territory: {
         type: Sequelize.STRING
     }
-},{
+}, {
     timestamps: false
 });
 
 offices.removeAttribute('id');
-offices.removeAttribute('createdAt');
-offices.removeAttribute('updatedAt');
 
 module.exports = offices;

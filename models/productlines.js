@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const productlines = db.define('productlines',{
+const productlines = db.define('productlines', {
     productLine: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        primaryKey: true
     },
     textDescription: {
         type: Sequelize.STRING
@@ -14,12 +15,10 @@ const productlines = db.define('productlines',{
     image: {
         type: Sequelize.STRING
     }
-},{
+}, {
     timestamps: false
 });
 
 productlines.removeAttribute('id');
-productlines.removeAttribute('createdAt');
-productlines.removeAttribute('updateAt');
 
 module.exports = productlines;

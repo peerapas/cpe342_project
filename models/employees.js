@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const employees = db.define('employees',{
+const employees = db.define('employees', {
     employeeNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        primaryKey: true
     },
     lastName: {
         type: Sequelize.STRING
@@ -21,7 +22,7 @@ const employees = db.define('employees',{
         type: Sequelize.STRING
     },
     reportsTo: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
     },
     jobTitle: {
         type: Sequelize.STRING
@@ -29,12 +30,10 @@ const employees = db.define('employees',{
     Password: {
         type: Sequelize.STRING
     }
-},{
+}, {
     timestamps: false
 });
 
 employees.removeAttribute('id');
-employees.removeAttribute('createdAt');
-employees.removeAttribute('updatedAt');
 
 module.exports = employees;

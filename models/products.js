@@ -21,19 +21,21 @@ const products = db.define('products', {
         type: Sequelize.STRING
     },
     quantityInStock: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
     },
     buyPrice: {
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
     },
     MSRP: {
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
     },
-    
-},{
+    releaseDate: {
+        type: Sequelize.DATEONLY
+    }
+
+}, {
     timestamps: false
 });
-timestamps: false
 products.removeAttribute('id');
 // products.removeAttribute('createdAt');
 // products.removeAttribute('updatedAt');

@@ -3,26 +3,24 @@ const db = require('../config/database');
 
 const orderdetails = db.define('ordersdetails', {
     orderNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
     },
     productCode: {
         type: Sequelize.STRING
     },
     quantityOrdered: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
     },
     priceEach: {
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
     },
     orderLineNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
     }
-},{
+}, {
     timestamps: false
 });
 
 orderdetails.removeAttribute('id');
-orderdetails.removeAttribute('createdAt');
-orderdetails.removeAttribute('updatedAt');
 
 module.exports = orderdetails;
