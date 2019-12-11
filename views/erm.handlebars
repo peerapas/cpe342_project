@@ -1,0 +1,98 @@
+<div class="container">
+
+    <div class="row">
+
+        <h1 class="my-4"></h1>
+
+        <div class="col-lg-9">
+
+            <form action="#">
+                <table id="data" class="table table-striped table-bordered" style="margin-top:20px">
+
+                </table>
+            </form>
+            </br>
+            </br>
+            </br>
+            </br>
+
+
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script>
+    let employees
+    $.get('/employees', d => {
+        employees = d;
+        let data = `<h2>Employee Resource Management</h2>
+                    <tr>
+                        <th>
+                            <div>Emplyee Number</div>
+                        </th>
+                        <th>
+                            <div>Name</div>
+                        </th>
+                        <th>
+                            <div>Email</div>
+                        </th>
+                        <th>
+                            <div>Current Job Title</div>
+                        </th>
+                        <th>
+                            <div>New Job Title</div>
+                        </th>
+                    </tr>`;
+        d.forEach(e => {
+            data+=`<tr>
+                        <th>
+                            <div id="employeeNumber${e.employeeNumber}">${e.employeeNumber}</div>
+                        </th>
+                        <th>
+                            <div id="employeeName${e.employeeNumber}">${e.firstName} ${e.lastName}</div>
+                        </th>
+                        <th>
+                            <div id="email${e.employeeNumber}">${e.email}</div>
+                        </th>
+                        <th>
+                            <div id="jobTitle">${e.jobTitle}</div>
+                        </th>
+                        <th>
+                            <select id="jobTitle${e.employeeNumber}">
+                                <option></option>
+                                <option value="President">President</option>
+                                <option value="VP Sales">VP Sales</option>
+                                <option value="VP Marketing">VP Marketing</option>
+                                <option value="Sales Manager (APAC)">Sales Manager (APAC)</option>
+                                <option value="Sales Manager (EMEA)">Sales Manager (EMEA)</option>
+                                <option value="Sales Manager (NA)">Sales Manager (NA)</option>
+                                <option value="Sales Rep">Sales Rep</option>
+                            </select>
+                        </th>
+                        
+                        <th>
+                            <div><button id="${e.employeeNumber}" class="btn btn-success" onclick="save_click(this.id, event); return false;">✔</button></div>
+                        </th>
+                    </tr>`
+        });
+        $('#data').html(data);
+        
+    })
+    function save_click(id,e) {
+        e.preventDefault();
+        const target = {
+            targetCode: id,
+            newTitle: document.getElementById("jobTitle"+id).value
+        }
+        console.log(target)
+        $.post('/erm/edit_title', {Code: target.targetCode, Title: target.newTitle})
+    }
+    
+</script>

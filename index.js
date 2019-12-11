@@ -69,6 +69,14 @@ app.get('/createDiscount', (req, res) => {
     res.render('createDiscount', { layout: 'employee_nav' })
 })
 
+app.get('/erm', (req, res) => {
+    res.render('erm', {layout: 'employee_nav'})
+})
+
+app.get('/customer_manage', (req, res) => {
+    res.render('customer', {layout: 'employee_nav'})
+})
+
 // Products routes
 app.use('/products', require('./routes/products'));
 // Employees routes
@@ -77,6 +85,8 @@ app.use('/employees', require('./routes/employees'));
 app.use('/customers', require('./routes/customers'));
 // Discount routes
 app.use('/discount', require('./routes/discount'));
+// ERM routes
+app.use('/erm', require('./routes/erm'))
 
 const PORT = process.env.PORT || 3000;
 
