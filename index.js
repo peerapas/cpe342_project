@@ -75,6 +75,8 @@ app.use('/products', require('./routes/products'));
 app.use('/employees', require('./routes/employees'));
 // Customers routes
 app.use('/customers', require('./routes/customers'));
+// Discount routes
+app.use('/discount', require('./routes/discount'));
 
 const PORT = process.env.PORT || 3000;
 

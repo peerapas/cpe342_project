@@ -1,29 +1,42 @@
 <!-- Page Content -->
 <div class="container">
 
-  <div style="margin-top: 10px;" class="row">
+  <div style="margin-top: 1.5rem!important" class="row">
 
-    <h1 class="my-4">Add discount code</h1>
+    <h1 class="my-4">Create Discount Code</h1>
 
 
     <div class="col-lg-9">
 
-      <form action="#">
+      <form action="#" style="margin-top: 1.5rem!important; margin-left: 1.5rem!important">
         <div class="form-group">
-          <label for="discountCode">Discount Code:</label>
-          <input type="text" class="form-control" id="discountCode" >
+          <label for="productCode">Discount Code:</label>
+          <input type="text" class="form-control" id="code" >
         </div>
         <br />
 
         <div class="form-group">
-            <label for="amnt">Discount Amount:</label>
-            <input type="text" class="form-control" id="amnt">
+          <label for="productName">Discount Amount:</label>
+          <input type="text" class="form-control" id="amnt" >
+        </div>
+        <br />
+
+        <div class="form-group">
+            <label for="productLine">Number of usable time:</label>
+            <input type="text" class="form-control" id="num">
+        </div>
+        <div class="form-group">
+          <label for="productScale">Minimum price:</label>
+          <input type="text" class="form-control" id="min">
+        </div>
+        <div class="form-group">
+          <label for="productVendor">Expire date:</label>
+          <input type="text" class="form-control" id="exp">
+        </div>
+
         <div class="form-group row">
           <div class="col-5">
-              <button type="submit" class="btn btn-default" id="add">Add</button>
-          </div>
-          <div class="col-5">
-              <button type="submit" class="btn btn-default" id="cancel">Cancel</button>
+              <button type="submit" id="add_click" class="btn btn-default" style="background-color:gray;color:white">Add</button>
           </div>
         </div>
 
@@ -42,7 +55,4 @@
 
 </div>
 <!-- /.container -->
-
-
-<script src="/main_script/stock_in.js"></script>
 <script src="/main_script/discountCode.js"></script>
