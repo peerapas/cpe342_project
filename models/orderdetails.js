@@ -17,6 +17,8 @@ const orderdetails = db.define('ordersdetails', {
     orderLineNumber: {
         type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 orderdetails.removeAttribute('id');

@@ -16,6 +16,8 @@ const stock_in = db.define('stocks', {
     in_date: {
         type: sequelize.DATE
     }
+},{
+    timestamps: false
 });
 
 stock_in.removeAttribute('id');

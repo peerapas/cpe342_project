@@ -29,6 +29,8 @@ const offices = db.define('offices',{
     territory:{
         type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 offices.removeAttribute('id');

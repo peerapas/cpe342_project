@@ -29,6 +29,8 @@ const employees = db.define('employees',{
     Password: {
         type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 employees.removeAttribute('id');

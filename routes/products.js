@@ -61,7 +61,7 @@ router.post('/edit', (req, res) => {
     },
     {
         where: {productCode: req.body.Code},
-        silent: true
+        // silent: true
     }).then(e => {
         if(e.productName == req.body.Name){
             res.end('done');
@@ -93,7 +93,7 @@ router.post('/create', (req,res) => {
         MSRP: req.body.MSRP,
     },
     {
-        silent: true
+        // silent: true
     }).then(e => {
         if(e.productName == req.body.Name){
             res.end('done');

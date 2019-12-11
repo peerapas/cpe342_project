@@ -23,6 +23,8 @@ const orders = db.define('orders',{
     customerNumber: {
         type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 orders.removeAttribute('id');

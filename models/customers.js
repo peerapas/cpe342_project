@@ -41,6 +41,8 @@ const customers = db.define('customers', {
     creditLimit: {
         type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 customers.removeAttribute('id');

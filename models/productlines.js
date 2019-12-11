@@ -14,6 +14,8 @@ const productlines = db.define('productlines',{
     image: {
         type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 productlines.removeAttribute('id');

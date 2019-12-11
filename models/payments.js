@@ -14,6 +14,8 @@ const payments = db.define('payments',{
     amount: {
         type: Sequelize.STRING
     }
+},{
+    timestamps: false
 });
 
 payments.removeAttribute('id');
