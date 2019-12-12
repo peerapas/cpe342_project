@@ -69,11 +69,15 @@ app.get('/createDiscount', (req, res) => {
 })
 
 app.get('/erm', (req, res) => {
-    res.render('erm', {layout: 'employee_nav'})
+    res.render('erm', { layout: 'employee_nav' })
 })
 
 app.get('/customer_manage', (req, res) => {
-    res.render('customer', {layout: 'employee_nav'})
+    res.render('customer', { layout: 'employee_nav' })
+})
+
+app.get('/stock', (req, res) => {
+    res.render('stock', { layout: 'employee_nav' })
 })
 
 // Products routes
