@@ -1,4 +1,4 @@
-<!-- Page Content -->
+{{!-- <!-- Page Content -->
 <div class="container">
 
   <div style="margin-top: 1.5rem!important" class="row">
@@ -54,5 +54,206 @@
   <!-- /.row -->
 
 </div>
-<!-- /.container -->
+<!-- /.container --> --}}
 <script src="/main_script/discountCode.js"></script>
+
+
+<div class="container">
+
+    <div class="row">
+
+        <h1 class="my-4"></h1>
+
+        <div class="col-lg-9">
+
+            <form action="#">
+                <table id="data" class="table table-striped table-bordered" style="margin-top:20px">
+
+                </table>
+            </form>
+            </br>
+            </br>
+            </br>
+            </br>
+
+
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script>
+    let discounts
+    $.get('/discount', d => {
+        discounts = d;
+        let data = `<h2>Discount Code Management</h2>
+                    <tr>
+                        <td colspan="6">Discount List</td>
+                        <td>
+                     <button class="btn btn-success" sylte="width:50%" onClick="insert(event); document.getElementById('id01').style.display='block'; return false;">
+                        +
+                      </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div>Code</div>
+                        </th>
+                        <th>
+                            <div>Discount Amount</div>
+                        </th>
+                        <th>
+                            <div>Number of usable time</div>
+                        </th>
+                        <th>
+                            <div>Minimum price</div>
+                        </th>
+                        <th>
+                            <div>Expire date</div>
+                        </th>
+                    </tr>`;
+        d.forEach(e => {
+            data+=`<tr>
+                        <th>
+                            <div id="discount_code">${e.discountCode}</div>
+                        </th>
+                        <th>
+                            <div id="amount">${e.discountPrice}</div>
+                        </th>
+                        <th>
+                            <div id="number">${e.usableTimes}</div>
+                        </th>
+                        <th>
+                            <div id="minPrice">${e.minimumPrice}</div>
+                        </th>
+                        <th>
+                            <div id="exp">${e.expireDate}</div>
+                        </th>
+
+                        <th>
+                            <div><button id="${e.discountCode}" class="btn btn-success" onclick="edit(this.id); document.getElementById('id01').style.display='block'; return false;">edit</button></div>
+                            <div><button id="${e.discountCode}" class="login_cancelbtn" onclick="remove(this.id); return false;">delete</button></div>
+                        </th>
+                    </tr>`
+        });
+        $('#data').html(data);
+        
+    })
+    function save_click(id,e) {
+        e.preventDefault();
+        const target = {
+            targetCode: id,
+            newTitle: document.getElementById("jobTitle"+id).value
+        }
+        console.log(target)
+        $.post('/erm/edit_title', {Code: target.targetCode, Title: target.newTitle})
+    }
+    function insert(e) {
+        e.preventDefault();
+        $("#id01").html(`<form class="login_modal-content animate">
+    <div class="login_imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="login_close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="login_container">
+        <label for="uname"><b>Discount Code</b></label>
+        <input type="text" name="uname" id="code" >
+
+        <label for="uname"><b>Discount Amount</b></label>
+        <input type="text" name="uname" id="amount" >
+
+        <label for="uname"><b>Number of usable times</b></label>
+        <input type="text" name="uname" id="num" >
+
+        <label for="uname"><b>Minimum price</b></label>
+        <input type="text" name="uname" id="minPrice" >
+
+        <label for="uname"><b>Expire date</b></label>
+        <input type="text" name="uname" id="exp" >
+    </div>
+
+    <div class="login_container" style="background-color:#f1f1f1">
+        <button class='login-button'>Apply</button>
+    </div>
+</form>`);
+
+        $('.login-button').click((e) => {
+            e.preventDefault();
+            const ipt = {
+                newCode: document.getElementById("code").value.toString(),
+                newAmount: document.getElementById("amount").value.toString(),
+                newNum: document.getElementById("num").value.toString(),
+                newMin: document.getElementById("minPrice").value.toString(),
+                newExp: document.getElementById("exp").value.toString()
+            }
+            $.post('/discount/create', { d: ipt }, res => {
+                
+            });
+        })
+    }
+
+    var modal = document.getElementById("id01");
+
+    window.onclick = (e) => {
+        if (e.target == modal) modal.style.display = 'none';
+    }
+    function edit(id) {
+        $.get('/discount/' + id, data => {
+            if (data) {
+                $("#id01").html(`<form class="login_modal-content animate">
+    <div class="login_imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="login_close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="login_container">
+        <label for="uname"><b>Discount Code</b></label>
+        <input type="text" name="uname" id="code" value="${data.discountCode}">
+
+        <label for="uname"><b>Discount amount</b></label>
+        <input type="text" name="uname" id="amount" value="${data.discountPrice}">
+
+        <label for="uname"><b>Number of usable times</b></label>
+        <input type="text" name="uname" id="num" value="${data.usableTimes}">
+
+        <label for="uname"><b>Minimum price</b></label>
+        <input type="text" name="uname" id="edit_phone" value="${data.minimumPrice}">
+
+        <label for="uname"><b>Expire date</b></label>
+        <input type="text" name="uname" id="exp" value="${data.expireDate}">
+
+    </div>
+
+    <div class="login_container" style="background-color:#f1f1f1">
+        <button class='login-button'>Apply</button>
+    </div>
+</form>`);
+                $('.login-button').click((e) => {
+                    e.preventDefault();
+                    const ipt = {
+                        newCode: document.getElementById("code").value,
+                        newAmount: document.getElementById("amount").value,
+                        newNum: document.getElementById("num").value,
+                        newMin: document.getElementById("minPrice").value,
+                        newExp: document.getElementById("exp").value
+                    }
+                    $.post('/discount/update', { d: ipt }, res => {
+
+                    });
+                }
+                )
+            }
+        })
+    }
+
+    function remove(id){
+        $.post('/discount/delete', {id: id}, res => {
+
+        })
+    }
+</script>
