@@ -216,19 +216,19 @@
 
     <div class="login_container">
         <label for="uname"><b>Discount Code</b></label>
-        <input type="text" name="uname" id="code" value="${data.discountCode}">
+        <input type="text" name="uname" id="new_code" value="${data.discountCode}" readonly style="background-color:LightGrey ">
 
         <label for="uname"><b>Discount amount</b></label>
-        <input type="text" name="uname" id="amount" value="${data.discountPrice}">
+        <input type="text" name="uname" id="new_amount" value="${data.discountPrice}">
 
         <label for="uname"><b>Number of usable times</b></label>
-        <input type="text" name="uname" id="num" value="${data.usableTimes}">
+        <input type="text" name="uname" id="new_num" value="${data.usableTimes}">
 
         <label for="uname"><b>Minimum price</b></label>
-        <input type="text" name="uname" id="edit_phone" value="${data.minimumPrice}">
+        <input type="text" name="uname" id="min_price" value="${data.minimumPrice}">
 
         <label for="uname"><b>Expire date</b></label>
-        <input type="text" name="uname" id="exp" value="${data.expireDate}">
+        <input type="text" name="uname" id="new_exp" value="${data.expireDate}">
 
     </div>
 
@@ -239,11 +239,11 @@
                 $('.login-button').click((e) => {
                     e.preventDefault();
                     const ipt = {
-                        newCode: document.getElementById("code").value,
-                        newAmount: document.getElementById("amount").value,
-                        newNum: document.getElementById("num").value,
-                        newMin: document.getElementById("minPrice").value,
-                        newExp: document.getElementById("exp").value
+                        newCode: document.getElementById("new_code").value,
+                        newAmount: document.getElementById("new_amount").value,
+                        newNum: document.getElementById("new_num").value,
+                        newMin: document.getElementById("min_price").value,
+                        newExp: document.getElementById("new_exp").value
                     }
                     $.post('/discount/update', { d: ipt }, res => {
                         if(res === 'done'){
