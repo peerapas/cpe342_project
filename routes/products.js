@@ -5,46 +5,46 @@ const Products = require('../models/products');
 router.get('/', (req, res) => Products.findAll()
     .then(products => {
         res.send(products);
-        res.sendStatus(200);
+        // res.sendStatus(200);
     })
     .catch(err => console.log(err))
 );
 
 router.get('/vendor', (req, res) => {
-    Products.findAll({group : 'ProductVendor'})
-    .then(product => {
-        res.send(product);
-    })
-    .catch((err) => console.log(err))
+    Products.findAll({ group: 'ProductVendor' })
+        .then(product => {
+            res.send(product);
+        })
+        .catch((err) => console.log(err))
 });
 
 router.get('/vendor/:find', (req, res) => {
-    Products.findAll({ where: {ProductVendor: req.params.find}})
-    .then(product => {
-        res.send(product);
-    })
+    Products.findAll({ where: { ProductVendor: req.params.find } })
+        .then(product => {
+            res.send(product);
+        })
 });
 
 router.get('/scale', (req, res) => {
-    Products.findAll({group : 'ProductScale'})
-    .then(product => {
-        res.send(product);
-    })
-    .catch((err) => console.log(err))
+    Products.findAll({ group: 'ProductScale' })
+        .then(product => {
+            res.send(product);
+        })
+        .catch((err) => console.log(err))
 });
 
 router.get('/scale/:find', (req, res) => {
-    Products.findAll({ where: {ProductScale: req.params.find}})
-    .then(product => {
-        res.send(product);
-    })
+    Products.findAll({ where: { ProductScale: req.params.find } })
+        .then(product => {
+            res.send(product);
+        })
 });
 
 router.get('/edit/:find', (req, res) => {
-    Products.findAll({ where: {ProductCode: req.params.find}})
-    .then(product => {
-        res.send(product)
-    })
+    Products.findAll({ where: { ProductCode: req.params.find } })
+        .then(product => {
+            res.send(product)
+        })
 })
 
 router.post('/edit', (req, res) => {
@@ -58,12 +58,11 @@ router.post('/edit', (req, res) => {
         quantityInStock: req.body.Quantity,
         buyPrice: req.body.Price,
         MSRP: req.body.MSRP
-    },
-    {
-        where: {productCode: req.body.Code},
+    }, {
+        where: { productCode: req.body.Code },
         // silent: true
     }).then(e => {
-        if(e.productName == req.body.Name){
+        if (e.productName == req.body.Name) {
             res.end('done');
         }
     })
@@ -72,7 +71,7 @@ router.post('/edit', (req, res) => {
 router.post('/delete', (req, res) => {
     console.log(req.body.targetCode)
     Products.destroy({
-        where:{
+        where: {
             productCode: req.body.targetCode
         }
     }).then(e => {
@@ -80,7 +79,7 @@ router.post('/delete', (req, res) => {
     })
 })
 
-router.post('/create', (req,res) => {
+router.post('/create', (req, res) => {
     Products.create({
         productCode: req.body.Code,
         productName: req.body.Name,
@@ -91,11 +90,10 @@ router.post('/create', (req,res) => {
         quantityInStock: req.body.Quantity,
         buyPrice: req.body.Price,
         MSRP: req.body.MSRP,
-    },
-    {
+    }, {
         // silent: true
     }).then(e => {
-        if(e.productName == req.body.Name){
+        if (e.productName == req.body.Name) {
             res.end('done');
         }
     })

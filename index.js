@@ -90,6 +90,8 @@ app.use('/customers', require('./routes/customers'));
 app.use('/discount', require('./routes/discount'));
 // ERM routes
 app.use('/erm', require('./routes/erm'))
+    // stocks routes
+app.use('/stocks', require('./routes/stocks'));
 
 const PORT = process.env.PORT || 3000;
 

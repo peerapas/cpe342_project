@@ -14,7 +14,7 @@ const stock_in = db.define('stocks', {
         type: sequelize.INTEGER
     },
     in_date: {
-        type: sequelize.DATE
+        type: sequelize.DATEONLY
     }
 }, {
     timestamps: false

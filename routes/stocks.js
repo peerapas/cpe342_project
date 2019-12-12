@@ -2,6 +2,7 @@ const Sequelize = require('Sequelize');
 const express = require('express');
 const router = express.Router();
 const stocks = require('../models/stock_in');
+const Products = require('../models/products');
 
 router.get('/', (req, res) => {
     stocks.findAll()
@@ -28,6 +29,9 @@ router.post('/add', (req, res) => {
         quantity: req.body.amount,
         in_date: mm + '-' + dd + '-' + yyyy
     }).then(res.end('done'));
+    Products.findOne({
+        where: { productCode: req.body.product }
+    }).then(d => d.increment('quantityInStock', { by: req.body.amount }))
 })
 
 module.exports = router;

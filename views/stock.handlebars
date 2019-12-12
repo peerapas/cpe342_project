@@ -76,7 +76,7 @@
     <div class="login_container">
 
       <label for="uname"><b>Product</b></label>
-      <input type="text" id="product">
+      <select id="product"><option></option></select>
 
       <label for="uname"><b>Amount</b></label>
       <input type="text" id="amount">
@@ -88,14 +88,19 @@
       <button class='login-button'>Apply</button>
     </div>
     </form>`)
-    
 
+    $.get('/products', d => {
+      d.forEach( e => {
+        document.getElementById('product').innerHTML+=`<option value="${e.productCode}">${e.productName}</option>`;
+        })
+    })
+    
     $('.login-button').click((e) => {
       e.preventDefault();
-      $.post('/stocks/add', {product:$('#product').val(), amount:$('#amount').val()}, d => {
+      $.post('/stocks/add', {product: document.getElementById('product').value, amount:$('#amount').val()}, d => {
       if(d==='done'){
         alert('success');
-        window.location.href = '#';
+        window.location.href = '/stock';
       }
     })
     })
