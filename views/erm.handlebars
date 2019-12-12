@@ -67,12 +67,11 @@
                         <th>
                             <select id="jobTitle${e.employeeNumber}">
                                 <option></option>
-                                <option value="President">President</option>
-                                <option value="VP Sales">VP Sales</option>
-                                <option value="VP Marketing">VP Marketing</option>
-                                <option value="Sales Manager (APAC)">Sales Manager (APAC)</option>
-                                <option value="Sales Manager (EMEA)">Sales Manager (EMEA)</option>
-                                <option value="Sales Manager (NA)">Sales Manager (NA)</option>
+                                <option id="vpsales" value="VP Sales" style="display: none">VP Sales</option>
+                                <option id="vpmarketing" value="VP Marketing" style="display: none">VP Marketing</option>
+                                <option id="apac" value="Sales Manager (APAC)" style="display: none">Sales Manager (APAC)</option>
+                                <option id="emea" value="Sales Manager (EMEA)" style="display: none">Sales Manager (EMEA)</option>
+                                <option id="na" value="Sales Manager (NA)" style="display: none">Sales Manager (NA)</option>
                                 <option value="Sales Rep">Sales Rep</option>
                             </select>
                         </th>
@@ -95,4 +94,23 @@
         $.post('/erm/edit_title', {Code: target.targetCode, Title: target.newTitle})
     }
     
+    $.get('/session',  d => {
+      if(!d)window.location.href = '/';
+      $.get('/employees/find/'+d, data => {
+        $('.navbar-brand').html(`Hi, ${data.firstName} ${data.lastName}`);
+        $('#job-title').html(`${data.jobTitle}`);
+        if(data.jobTitle === "President"){
+          document.getElementById('vpsales').style.display = 'inherit';
+          document.getElementById('vpmarketing').style.display = 'inherit';
+          document.getElementById('apac').style.display = 'inherit';
+          document.getElementById('emea').style.display = 'inherit';
+          document.getElementById('na').style.display = 'inherit';
+        }
+        else if(data.jobTitle === "VP Sales"){
+          document.getElementById('apac').style.display = 'inherit';
+          document.getElementById('emea').style.display = 'inherit';
+          document.getElementById('na').style.display = 'inherit';
+        }
+      })
+    })
 </script>
