@@ -94,7 +94,7 @@
       if(!d)window.location.href = '/';
       $.get('/employees/find/'+d, data => {
         $('.navbar-brand').html(`Hi, ${data.firstName} ${data.lastName}`);
-        $('#job-title').html(`${data.jobTitle}`);
+        $('#job-title').html(`<div style="color:white;">${data.jobTitle}</div>`);
         if(data.jobTitle === "President" || data.jobTitle==="VP Sales" || data.jobTitle.includes("Sales Manager")){
           document.getElementById('erm').style.display = 'inherit';
         }

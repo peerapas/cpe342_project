@@ -193,7 +193,10 @@
                 newExp: document.getElementById("exp").value.toString()
             }
             $.post('/discount/create', { d: ipt }, res => {
-                
+                if(res === 'done'){
+                    alert('success')
+                    window.location.href = '/createDiscount'
+                }
             });
         })
     }
@@ -243,7 +246,10 @@
                         newExp: document.getElementById("exp").value
                     }
                     $.post('/discount/update', { d: ipt }, res => {
-
+                        if(res === 'done'){
+                            alert('success')
+                            window.location.href = '/createDiscount'
+                        }
                     });
                 }
                 )
@@ -253,7 +259,10 @@
 
     function remove(id){
         $.post('/discount/delete', {id: id}, res => {
-
+            if(res === 'done'){
+                alert('success')
+                window.location.href = '/createDiscount'
+            }
         })
     }
 </script>
